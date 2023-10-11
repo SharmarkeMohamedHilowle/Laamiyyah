@@ -81,6 +81,13 @@
                 transform: scale(1);
             }
         }
+
+        #currentTimeDisplay {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -89,7 +96,7 @@
     <h4>Recited by Abdulrahman Hassan</h4>
 
     <!-- Remove controls from the audio element -->
-    <audio style="display: none;">
+    <audio style="display: none;" id="audioPlayer">
         <source src="poem.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -113,11 +120,15 @@
         <button id="playPauseBtn"><i class="fas fa-play"></i></button>
     </div>
 
+    <!-- Current Time Display -->
+    <div id="currentTimeDisplay"></div>
+
     <!-- Initialize Wavesurfer -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var audio = document.querySelector('audio');
+            var audio = document.getElementById('audioPlayer');
             var playPauseBtn = document.getElementById('playPauseBtn');
+            var currentTimeDisplay = document.getElementById('currentTimeDisplay');
             var isPlaying = false;
 
             if (!audio.canPlayType) {
@@ -133,6 +144,23 @@
                     }
                     isPlaying = !isPlaying;
                 });
+
+                audio.addEventListener('timeupdate', updateTimeDisplay);
+
+                function updateTimeDisplay() {
+                    var currentTime = audio.currentTime;
+                    var duration = audio.duration;
+
+                    var currentMinutes = Math.floor(currentTime / 60);
+                    var currentSeconds = Math.floor(currentTime % 60);
+                    var durationMinutes = Math.floor(duration / 60);
+                    var durationSeconds = Math.floor(duration % 60);
+
+                    currentTimeDisplay.textContent = currentMinutes + ':' + (currentSeconds < 10 ? '0' : '') + currentSeconds +
+                        ' / ' + durationMinutes + ':' + (durationSeconds < 10 ? '0' : '') + durationSeconds;
+                }
+
+                updateTimeDisplay(); // Update the display initially
             }
         });
     </script>
