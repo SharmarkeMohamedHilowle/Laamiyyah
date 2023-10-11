@@ -24,18 +24,21 @@
         }
 
         .image-container {
+            display: flex;
+            justify-content: center;
             text-align: center;
             margin-bottom: 20px;
         }
 
         img {
-            animation: zoom 60s infinite;
             max-width: 100%;
-            padding: 13px;
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             /* Remove the border */
             border: none;
+            display: block; /* To remove extra space reserved for descenders */
+            margin: 0 auto; /* Center the image horizontally */
         }
 
         pre {
