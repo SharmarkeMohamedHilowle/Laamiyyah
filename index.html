@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laamiyyah Poem attributed to Shaykh al-Islaam Ibn Taymiyyah</title>
+
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #2c3e50; /* Dark grayish blue background color */
+            color: #ecf0f1; /* Light grayish blue text color */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h4 {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        img {
+            animation: zoom 60s infinite;
+            max-width: 100%;
+            padding: 13px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* Remove the border */
+            border: none;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 20px;
+        }
+
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+
+        button {
+            background-color: #2ecc71; /* Emerald green background color */
+            color: #ecf0f1; /* Light grayish blue text color */
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50%; /* Make it a circle */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #27ae60; /* Slightly darker green on hover */
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Laamiyyah Poem</h1>
+    <h4>Recited by Abdulrahman Hassan</h4>
+
+    <!-- Remove controls from the audio element -->
+    <audio style="display: none;">
+        <source src="poem.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Image 1 -->
+    <div class="image-container">
+        <img src="./laamiyyah.jpg" height="800" alt="Album Art Cover 1">
+    </div>
+
+    <!-- Image 2 -->
+    <div class="image-container">
+        <img src="./laamiyyah2.jpg" height="800" alt="Album Art Cover 2">
+    </div>
+
+    <pre>
+        <!-- Your poem here -->
+    </pre>
+
+    <!-- Controls -->
+    <div id="controls">
+        <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+    </div>
+
+    <!-- Initialize Wavesurfer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var audio = document.querySelector('audio');
+            var playPauseBtn = document.getElementById('playPauseBtn');
+            var isPlaying = false;
+
+            if (!audio.canPlayType) {
+                console.error('Your browser does not support the audio element.');
+            } else {
+                playPauseBtn.addEventListener('click', function () {
+                    if (isPlaying) {
+                        audio.pause();
+                        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    } else {
+                        audio.play();
+                        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    }
+                    isPlaying = !isPlaying;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
